@@ -35,4 +35,8 @@ int main() {
     solve();
 
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1960169d60e491c01731302fef6b26b644fc06fd
