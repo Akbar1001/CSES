@@ -1,24 +1,38 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 
-int solve(int n,int i){
+const int M = 1e9 + 7;
+
+void solve() {
+    int n;
+    cin >> n;
+
+    // dp[x] will store the number of ways to form sum x
+    vector<ll> dp(n + 1, 0);
     
-    if(i==1 || n==0)
-        return 1;
+    // Base case: There is exactly 1 way to make a sum of 0 (by throwing 0 dice)
+    dp[0] = 1;
 
-    int not_take=0+solve(n,i-1);
-    int take=0;
-    if(n>=i)
-        take=1+solve(n-i,i);
+    // Compute the number of ways for every sum from 1 up to n
+    for (int x = 1; x <= n; x++) {
+        // Try all 6 possible faces of the dice for the current throw
+        for (int dice = 1; dice <= 6; dice++) {
+            if (x - dice >= 0) {
+                dp[x] = (dp[x] + dp[x - dice]) % M;
+            }
+        }
+    }
 
-    return take+not_take;
+    cout << dp[n] << "\n";
 }
 
-int main()
-{
-    ll n;   cin>>n;
-    
-    cout<<solve(n,6);
-     
+int main() {
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    solve();
+
+    return 0;
 }
