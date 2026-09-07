@@ -10,10 +10,10 @@ struct Range{
 };
 
 bool cus(const Range& a, const Range& b){
-    if(a.start!=b.start)
-        return a.start<b.start;
+    if(a.start==b.start)
+        return a.end<b.end;
     
-    return a.end<b.end;
+    return a.start<b.start;
 }
 
 
